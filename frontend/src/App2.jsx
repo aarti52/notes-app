@@ -6,7 +6,7 @@ Textarea, Box, useDisclosure, useToast} from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import { CloseButton } from "./components/ui/close-button";
 import Note_Card from "./components/Note_Card";
-// import {bgimg} from './assets/background.png'
+
 import './App.css'
 function App2() {
   const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure();
@@ -143,7 +143,7 @@ function App2() {
   return (
     <ChakraProvider>
       <Box
-        bgImage={"./src/assets/backgroundimg.png"}       
+        bgImg={'../public/backgroundimg.png'}  
         width=" 100%"
         height="80vh"
         overflow="contain"      
