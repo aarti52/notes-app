@@ -18,7 +18,7 @@ function App2() {
   const toast=useToast()
   const addNote = async (note) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/notes", {
+      const res = await axios.post("https://notifyapp-two.vercel.app/api/notes", {
         // Your data goes here
         title: note.title,
         body: note.body,
@@ -55,7 +55,7 @@ function App2() {
 
     try {
       setNotes(notes.filter((n) => n.id != note._id));
-      await axios.delete(`http://localhost:3000/api/notes/${deletingNote._id}`);
+      await axios.delete(`https://notifyapp-two.vercel.app/api/notes/${deletingNote._id}`);
       toast({
         title: 'Note deleted.',
         description: 'The note was deleted successfully!',
@@ -83,7 +83,7 @@ function App2() {
 
   const updateNote = async () => {
     try {
-      const res = await axios.put(`http://localhost:3000/api/notes/${editNote._id}`, {
+      const res = await axios.put(`https://notifyapp-two.vercel.app/api/notes/${editNote._id}`, {
         title: formValues.title,
         body: formValues.body,
       });
@@ -134,7 +134,7 @@ function App2() {
 
   useEffect(() => {
     const getnotes = async () => {
-      let res = await axios.get("http://localhost:3000/api/notes");
+      let res = await axios.get("https://notifyapp-two.vercel.app/api/notes");
       setNotes(res.data);
     };
     getnotes();

@@ -6,7 +6,9 @@ import process from 'process';
 import dotenv from 'dotenv'
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: "https://notifyfrontend-cyan.vercel.app", // Your frontend URL
+}));
 dotenv.config()
 app.use(express.json())
 const port = process.env.PORT ||4005
