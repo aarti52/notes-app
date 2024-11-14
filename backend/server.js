@@ -17,7 +17,7 @@ try {
     } catch (error) {
         console.log(error)
     }
-app.use('/',noteRoute)
+app.use('/api/notes',noteRoute)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

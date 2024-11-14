@@ -1,21 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-import {
-  ChakraProvider,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Input,
-  Textarea,
-  Box,
-  useDisclosure,
-  useToast
-} from "@chakra-ui/react";
+import {ChakraProvider, Button, Modal, ModalOverlay, ModalContent, ModalHeader,  ModalBody,  ModalFooter, Input,
+Textarea, Box, useDisclosure, useToast} from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import { CloseButton } from "./components/ui/close-button";
 import Note_Card from "./components/Note_Card";
@@ -31,7 +18,7 @@ function App2() {
   const toast=useToast()
   const addNote = async (note) => {
     try {
-      const res = await axios.post("http://localhost:3000/", {
+      const res = await axios.post("http://localhost:3000/api/notes", {
         // Your data goes here
         title: note.title,
         body: note.body,
@@ -68,7 +55,7 @@ function App2() {
 
     try {
       setNotes(notes.filter((n) => n.id != note._id));
-      await axios.delete(`http://localhost:3000/${deletingNote._id}`);
+      await axios.delete(`http://localhost:3000/api/notes/${deletingNote._id}`);
       toast({
         title: 'Note deleted.',
         description: 'The note was deleted successfully!',
@@ -96,7 +83,7 @@ function App2() {
 
   const updateNote = async () => {
     try {
-      const res = await axios.put(`http://localhost:3000/${editNote._id}`, {
+      const res = await axios.put(`http://localhost:3000/api/notes/${editNote._id}`, {
         title: formValues.title,
         body: formValues.body,
       });
@@ -147,7 +134,7 @@ function App2() {
 
   useEffect(() => {
     const getnotes = async () => {
-      let res = await axios.get("http://localhost:3000/");
+      let res = await axios.get("http://localhost:3000/api/notes");
       setNotes(res.data);
     };
     getnotes();
@@ -156,12 +143,10 @@ function App2() {
   return (
     <ChakraProvider>
       <Box
-        bgImage={"./src/assets/backgroundimg.png"}
-       
+        bgImage={"./src/assets/backgroundimg.png"}       
         width=" 100%"
         height="80vh"
-        overflow="contain"
-      
+        overflow="contain"      
         backgroundRepeat= 'repeat-y' 
         backgroundSize=' cover'
         backgroundPosition= 'center'
@@ -176,8 +161,7 @@ function App2() {
       width=' 60vw'
       overflow=' auto'
       scrollBehavior='smooth'
-      margin='5rem auto'
-    
+      margin='5rem auto'    
       shadow='2xl'
       className="custom-scrollbar"
       >
@@ -187,7 +171,6 @@ function App2() {
             <Note_Card
             key={note.id}
             note={note}
-            // generateRandomColor={generateRandomColor}
             deleteNote={deleteNote}
             editExistingNote={editExistingNote}
             />
