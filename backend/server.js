@@ -6,10 +6,10 @@ import process from 'process';
 import dotenv from 'dotenv'
 const app = express()
 
-app.use(cors({
-    origin: "https://notifyfrontend-cyan.vercel.app", // Your frontend URL
-}));
 dotenv.config()
+app.use(cors());
+
+
 app.use(express.json())
 const port = process.env.PORT ||4005
 const URI=process.env.MongoDbURI
@@ -19,7 +19,11 @@ try {
     } catch (error) {
         console.log(error)
     }
+app.get('/',(req,res)=>{
+    res.send('backend running successfully')
+})
 app.use('/api/notes',noteRoute)
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
