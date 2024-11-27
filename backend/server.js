@@ -22,7 +22,7 @@ try {
 app.get('/',(req,res)=>{
     res.send('backend running successfully')
 })
-app.use('/api/notes',noteRoute)
+app.use('/notes',noteRoute)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
